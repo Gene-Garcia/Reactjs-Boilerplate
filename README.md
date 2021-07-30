@@ -28,7 +28,7 @@ Components are basically like html tags, such as `<p></p>`, `<div></div>`, etc. 
 2. src
 ..* contains the javascript codes, components, html tags, logic, data, API calls.
 
-### src File Structure
+#### src File Structure
 
 ```
 src
@@ -39,8 +39,46 @@ src
  |
  |--index.js
 ```
+
 | Name      | Explanation               |
 |-----------|---------------------------|
 | sreens    | screens or views. holds all the components and their logic, routing, more and sub-directories for components
 | shared    | all *shared* data or values used and shared by the entire application should be stored here. E.g., `.json` data
-| index.js  | the root or main `.js` file that renders the entire application `<App />` to the root container `<div id='root'></div>` in the `public/index.html' file
+| index.js  | the root or main `.js` file that renders the entire application `<App />` to the root container `<div id='root'></div>` in the `public/index.html` file
+
+#### `src/screens/` File Structure
+
+```
+src/screens
+       |
+       |-- App
+            |
+            |-- components
+            |       |-- App.js
+            |       |-- Navbar.js
+            |       |-- Header.js
+            |       |-- Footer.js
+            |       
+            |-- screens
+            |
+            |-- index.js
+            |
+            |-- route.js
+```
+
+| Name       | Explanation              |
+|------------|--------------------------|
+| components | the folder usually contains the `App.js`. It is the main components folder that holds the component rendered by the `src/index.js`. This template App.js has the route handling components `<Router><Switch><Route path={} component={} /></Switch></Router>`
+| sreens     | a directory that is for subdirectories that contains each ***main*** routes of the application.
+| route.js   | explained belowww (go here)[]
+| index.js   | this index file basically exports by `default` the main `src/screens/App/components/App.js`. This allows `src/index.js` to easily import the App.js
+
+#### `src/screens/App/screens/` File Structure
+
+```
+src/screens/App/screens/
+                   |
+                   |-- About
+                   |-- Home
+                   |-- Shop
+```
