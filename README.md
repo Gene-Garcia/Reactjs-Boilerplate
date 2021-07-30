@@ -39,8 +39,8 @@ src
  |
  |--index.js
 ```
-
-|---------|---------------------------|
-| sreens  | screens or views. holds all the components and their logic, routing, more and sub-directories for components
-| shared  | all *shared* data or values used and shared by the entire application should be stored here. E.g., `.json` data
+| Name      | Explanation               |
+|-----------|---------------------------|
+| sreens    | screens or views. holds all the components and their logic, routing, more and sub-directories for components
+| shared    | all *shared* data or values used and shared by the entire application should be stored here. E.g., `.json` data
 | index.js  | the root or main `.js` file that renders the entire application `<App />` to the root container `<div id='root'></div>` in the `public/index.html' file
