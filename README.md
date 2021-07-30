@@ -6,7 +6,7 @@ A template of a react.js with minimal starting dependencies.
 + react-dom
 + react-router-dom
 
-A file structure allows developers to easily read and navigate through the source code. Thus, increasing productivity. Some [articles]() explaines 
+A file structure allows developers to easily read and navigate through the source code. Thus, increasing productivity. Some [articles]() explains that with a formalized, recognized, and maintained file structure reduces the changes of merge conflicts.
 
 ## React Routing
 
