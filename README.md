@@ -28,7 +28,9 @@ Components are basically like html tags, such as `<p></p>`, `<div></div>`, etc. 
 2. src
 - contains the javascript codes, components, html tags, logic, data, API calls.
 
-#### src File Structure
+---
+
+#### `src` File Structure
 
 ```
 src
@@ -45,6 +47,8 @@ src
 | sreens    | screens or views. holds all the components and their logic, routing, more and sub-directories for components
 | shared    | all *shared* data or values used and shared by the entire application should be stored here. E.g., `.json` data
 | index.js  | the root or main `.js` file that renders the entire application `<App />` to the root container `<div id='root'></div>` in the `public/index.html` file
+
+---
 
 #### `src/screens/` File Structure
 
@@ -73,6 +77,8 @@ src/screens
 | route.js   | explained belowww (go here)[]
 | index.js   | this index file basically exports by `default` the main `src/screens/App/components/App.js`. This allows `src/index.js` to easily import the App.js
 
+---
+
 #### `src/screens/App/screens/` File Structure
 
 ```
@@ -82,3 +88,34 @@ src/screens/App/screens/
                    |-- Home
                    |-- Shop
 ```
+
+This directory simply contains subdirectories which are named after the main routes of your application.
+
+Name | Path
+--- | ---
+About | `\about`
+Home | `\home`
+Shop | `\shop`
+
+#### `src/screens/App/screens/home` File Structure
+
+*we will use ***Home*** directory for explanation*
+
+```
+`src/screens/App/screens
+                    |
+                    |-- Home
+                          |
+                          |-- components
+                          |
+                          |-- route.js
+                          |
+                          |-- index.js
+```
+
+| Name       | Explanation              |
+|------------|--------------------------|
+| components | 
+| route.js   | 
+| index.js   | 
+
