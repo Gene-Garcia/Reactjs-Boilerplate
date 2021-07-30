@@ -22,11 +22,11 @@ Components are basically like html tags, such as `<p></p>`, `<div></div>`, etc. 
 ## Usage 
 
 1. public
-..* contains the target `index.html` and external styling.
-..* the html file contains the reference to the `index.js` which is the React.js file.
+- contains the target `index.html` and external styling.
+- the html file contains the reference to the `index.js` which is the React.js file.
 
 2. src
-..* contains the javascript codes, components, html tags, logic, data, API calls.
+- contains the javascript codes, components, html tags, logic, data, API calls.
 
 #### src File Structure
 
