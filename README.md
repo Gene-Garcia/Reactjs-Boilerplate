@@ -30,6 +30,45 @@ Components are basically like html tags, such as `<p></p>`, `<div></div>`, etc. 
 
 ---
 
+### General File Structure 
+
+```
+src/
+ |
+ |-- shared/
+ |      |
+ |      |-- data/
+ |      |
+ |      |-- constants/
+ |
+ |-- screens/
+        |
+        |-- ***App/*** (Maybe other version of the App)
+        |    |
+        |    |-- ...
+        |
+        |-- ***App/***
+             |
+             |-- components/ (includes the general components used by the app, e.g., nav, header, footer, app
+             |
+             |-- screens/
+                     |
+                     |-- ***About/***
+                     |     |
+                     |     |-- ...
+                     |
+                     |-- ***Home/***
+                           |
+                           |-- components/
+                           |
+                           |-- screens/
+                                  |
+                                  |-- ...continou nesting RouteName/components and RouteName/screens if there more subroutes
+                           
+```
+
+---
+
 #### `src` File Structure
 
 ```
