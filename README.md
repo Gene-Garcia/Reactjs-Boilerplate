@@ -30,7 +30,7 @@ Components are basically like html tags, such as `<p></p>`, `<div></div>`, etc. 
 
 ---
 
-### General File Structure 
+### General Folder Structure 
 
 ```
 src/
@@ -43,118 +43,111 @@ src/
  |
  |-- screens/
         |
-        |-- ***App/*** (Maybe other version of the App)
+        |-- App/ (Maybe other version of the App)
         |    |
         |    |-- ...
         |
-        |-- ***App/***
+        |-- App/
              |
              |-- components/ (includes the general components used by the app, e.g., nav, header, footer, app
              |
              |-- screens/
                      |
-                     |-- ***About/***
+                     |-- About/
                      |     |
                      |     |-- ...
                      |
-                     |-- ***Home/***
+                     |-- Home/
                            |
                            |-- components/
                            |
                            |-- screens/
-                                  |
-                                  |-- ...continou nesting RouteName/components and RouteName/screens if there more subroutes
-                           
+                                  | 
+                                  |-- PrivacyPolicy/ 
+                                            |
+                                            |-- components
+                                            |
+                                            |-- screens/ ...continou nesting RouteName/components and RouteName/screens if there are more subroutes to Home/
 ```
+
++ The structure is repetitve nested structure of components/, and screens/ for subroutes of the current route. 
++ The route with the subroute in the example is Home/. Its url can be `DOMAIN/Home/PrivacyPolicy`
 
 ---
 
-#### `src` File Structure
+### Source codes in each directory
+
+
+1. RouteNameOrApp/Components/
 
 ```
-src
- |
- |--screens
- |
- |--shared
- |
- |--index.js
-```
-
-| Name      | Explanation               |
-|-----------|---------------------------|
-| sreens    | screens or views. holds all the components and their logic, routing, more and sub-directories for components
-| shared    | all *shared* data or values used and shared by the entire application should be stored here. E.g., `.json` data
-| index.js  | the root or main `.js` file that renders the entire application `<App />` to the root container `<div id='root'></div>` in the `public/index.html` file
-
----
-
-#### `src/screens/` File Structure
-
-```
-src/screens
-       |
-       |-- App
-            |
-            |-- components
-            |       |-- App.js
-            |       |-- Navbar.js
-            |       |-- Header.js
-            |       |-- Footer.js
-            |       
-            |-- screens
-            |
-            |-- index.js
-            |
-            |-- route.js
-```
-
-| Name       | Explanation              |
-|------------|--------------------------|
-| components | the folder usually contains the `App.js`. It is the main components folder that holds the component rendered by the `src/index.js`. This template App.js has the route handling components `<Router><Switch><Route path={} component={} /></Switch></Router>`
-| sreens     | a directory that is for subdirectories that contains each ***main*** routes of the application.
-| route.js   | explained belowww (go here)[]
-| index.js   | this index file basically exports by `default` the main `src/screens/App/components/App.js`. This allows `src/index.js` to easily import the App.js
-
----
-
-#### `src/screens/App/screens/` File Structure
-
-```
-src/screens/App/screens/
-                   |
-                   |-- About
-                   |-- Home
-                   |-- Shop
-```
-
-This directory simply contains subdirectories which are named after the main routes of your application.
-
-Name | Path
---- | ---
-About | `\about`
-Home | `\home`
-Shop | `\shop`
-
-#### `src/screens/App/screens/home` File Structure
-
-*we will use ***Home*** directory for explanation*
-
-```
-`src/screens/App/screens
+src/screens/App/components/
                     |
-                    |-- Home
-                          |
-                          |-- components
-                          |
-                          |-- route.js
-                          |
-                          |-- index.js
+                    |-- App.jsx
+                    |-- Nav.jsx
+
+src/screens/App/screens/Home/components/
+                                  |
+                                  |-- Home.jsx
 ```
 
-| Name       | Explanation              |
-|------------|--------------------------|
-| components | 
-| route.js   | 
-| index.js   | 
++ every *components/* folder contains `.jsx` or `.js` files which are React.js files that returns components for rendering.
 
+
+2. RouteNameOrApp/
+
+```
+src/
+ |
+ |-- index.js
+
+src/screens/App
+             |
+             |-- index.js
+             |-- route.js (main route)
+             
+src/screens/App/screens/Home
+                         |-- index.js
+                         |-- route.js
+                         
+src/screens/App/screens/Home/screens/PrivacyPolicy
+                                          |-- index.js
+                                          |-- route.js
+```
+
++ the directory of every RouteName and even its subroutes will always have two files. `index.js`, and `route.js`
+
+#### index.js
+
+In JS, importing from a folder e.g. /src/screens/App/screens/Home automatically imports the index.js if no file is indicated.
+
+Every `index.js`, except for `src/index.js`, basically imports the main component in the RouteNameFolder or SubRouteNameFolder, and exports it.
+
+The `src/index.js` is the index file that imports the main `src/screens/App/` and performs `ReactDOM.react(<App />, document.getElementById('root')`
+
+
+#### route.js
+
+Now, the exports from index.js will be imported by their respective routes as `component: NameOfComponent`. Then, along with the component, the `path: home/` is also exported
+
+The route.js of ***PrivacyPolicy***, a subroute of *Home*, performs the above. While, the route.js of not only exports *component and path* but also ***subroutes: []***.
+
+Subroutes in route.js is an array of *exported* route.js values from the SubRouteNameFolder directories.
+
+Then, the `src/screens/App/route.js` basically exports an array of route.js references in the level of `Home/` and `About/`. It does not include subroute route.js because they are already exported by their parent RouteFolder.
+
+Lastly, `src/screens/App/App.jsx` then just import `src/screens/App/route.js`with its nested route.js exports and index.js references. Which will be used in Route handling
+
+```javascript
+import routes from "../route";
+...
+<Router>
+ <Switch>
+  <Route {...routes.HOME} />
+  <Route {...routes.ABOUT} />
+
+  {/* Subroutes of HOME, routes[0] is the PrivacyPolicy reference */}
+  <Route {...routes.HOME.routes[0]} />
+ </Switch>
+</Router>
+```
